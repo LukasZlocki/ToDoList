@@ -23,6 +23,7 @@ class ToDoTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(12)
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // check box
           Checkbox(
@@ -35,6 +36,13 @@ class ToDoTile extends StatelessWidget {
               taskName,
               style: TextStyle(decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none),
           ),
+          // Delete button
+          IconButton(
+            color: Colors.red,
+            iconSize: 18,
+            icon: Icon(Icons.delete),
+            onPressed: () {},
+          )
         ],
         ),
       ),
