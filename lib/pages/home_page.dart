@@ -19,6 +19,13 @@ class _HomePageState extends State<HomePage> {
     ["Do excercise", false]
   ];
 
+  // delete task with secific index
+  void deleteTask(int index) {
+    setState(() {
+      toDoList.removeAt(index);
+    });
+  }
+
   // tapped checkbox method
   void checkBoxChanged( bool? value, int index) {
     setState(() {
@@ -68,6 +75,7 @@ class _HomePageState extends State<HomePage> {
                 taskName: toDoList[index][0],
                 taskCompleted: toDoList[index][1],
                 onChanged: (value) => checkBoxChanged(value, index),
+                onPressed: () => deleteTask(index),
             );
           }
         )

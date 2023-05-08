@@ -4,13 +4,16 @@ class ToDoTile extends StatelessWidget {
   final String taskName;
   final bool taskCompleted;
   Function(bool?)? onChanged;
+  Function() onPressed;
 
   ToDoTile({
     super.key,
     required this.taskName,
     required this.taskCompleted,
     required this.onChanged,
+    required this.onPressed,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class ToDoTile extends StatelessWidget {
             color: Colors.red,
             iconSize: 18,
             icon: Icon(Icons.delete),
-            onPressed: () {},
+            onPressed: onPressed,
           )
         ],
         ),
