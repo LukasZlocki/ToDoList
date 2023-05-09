@@ -43,15 +43,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   void createNewTaskEmail() {
-    createNewTask("EMAIL");
+    createNewTask("email");
   }
 
   void createNewTaskMessage() {
-    createNewTask("MESSAGE");
+    createNewTask("message");
   }
 
   void createNewTaskPhone() {
-    createNewTask("PHONE");
+    createNewTask("phone");
   }
 
   // create a new task on button click
