@@ -64,10 +64,24 @@ class _HomePageState extends State<HomePage> {
       title: Text('To Do'),
         elevation: 3,
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: createNewTask,
-          child: Icon(Icons.add),
-        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            FloatingActionButton(
+                onPressed: createNewTask,
+                child: Icon(Icons.email),
+              ),
+            FloatingActionButton(
+                onPressed: createNewTask,
+                child: Icon(Icons.phone),
+              ),
+            FloatingActionButton(
+              onPressed: createNewTask,
+              child: Icon(Icons.message),
+            ),
+          ],
+            ),
+
         body: ListView.builder(
           itemCount: toDoList.length,
           itemBuilder: (context, index) {
