@@ -3,6 +3,7 @@ import 'package:to_do_app/util/my_button.dart';
 
 class DialogBox extends StatelessWidget {
   final controller;
+  final String rodzaj;
   VoidCallback onSave;
   VoidCallback onCancel;
 
@@ -11,6 +12,7 @@ class DialogBox extends StatelessWidget {
     required this.controller,
     required this.onSave,
     required this.onCancel,
+    required this.rodzaj,
   });
 
   @override
@@ -22,7 +24,7 @@ class DialogBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Title'
+              'Title' + rodzaj
             ),
           // get user input
           TextField(

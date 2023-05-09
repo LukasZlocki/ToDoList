@@ -42,12 +42,25 @@ class _HomePageState extends State<HomePage> {
     Navigator.of(context).pop();
   }
 
+  void createNewTaskEmail() {
+    createNewTask("EMAIL");
+  }
+
+  void createNewTaskMessage() {
+    createNewTask("MESSAGE");
+  }
+
+  void createNewTaskPhone() {
+    createNewTask("PHONE");
+  }
+
   // create a new task on button click
-  void createNewTask() {
+  void createNewTask(String createMode) {
     showDialog(
         context: context,
         builder: (context) {
           return DialogBox(
+            rodzaj: createMode,
             controller: _controller,
             onSave: saveNewTask,
             onCancel: () => Navigator.of(context).pop(),
@@ -68,15 +81,15 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             FloatingActionButton(
-                onPressed: createNewTask,
+                onPressed: createNewTaskEmail,
                 child: Icon(Icons.email),
               ),
             FloatingActionButton(
-                onPressed: createNewTask,
+                onPressed: createNewTaskPhone,
                 child: Icon(Icons.phone),
               ),
             FloatingActionButton(
-              onPressed: createNewTask,
+              onPressed: createNewTaskMessage,
               child: Icon(Icons.message),
             ),
           ],
