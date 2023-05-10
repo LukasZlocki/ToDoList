@@ -28,7 +28,7 @@ class ToDoTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(24),
         decoration: BoxDecoration(
-          color: Colors.yellow,
+          color: Colors.blue,
           borderRadius: BorderRadius.circular(12)
         ),
         child: Row(
@@ -47,7 +47,7 @@ class ToDoTile extends StatelessWidget {
           ),
           // Delete button
           IconButton(
-            color: Colors.red,
+            color: Colors.pink,
             iconSize: 18,
             icon: Icon(Icons.delete),
             onPressed: onPressed,
