@@ -11,12 +11,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // text controller
-  final _controller = TextEditingController();
+  final _titleController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final _dateController = TextEditingController();
 
   // list of todos tasks
   List toDoList = [
-    ["Make tutorial", false],
-    ["Do excercise", false]
+    ["Make tutorial","aaa1","bbb1","cc1", false],
+    ["Do excercise","aaa2","bbb2","cc2", false]
   ];
 
   // delete task with secific index
@@ -29,15 +32,24 @@ class _HomePageState extends State<HomePage> {
   // tapped checkbox method
   void checkBoxChanged( bool? value, int index) {
     setState(() {
-      toDoList[index][1] = !toDoList[index][1];
+      toDoList[index][4] = !toDoList[index][4];
     });
   }
 
   // save new task
   void saveNewTask() {
     setState(() {
-      toDoList.add([_controller.text, false]);
-      _controller.clear();
+      toDoList.add([
+        _titleController.text,
+        _emailController.text,
+        _descriptionController.text,
+        _dateController.text,
+        false
+      ]);
+      _titleController.clear();
+      _emailController.clear();
+      _descriptionController.clear();
+      _dateController.clear();
     });
     Navigator.of(context).pop();
   }
@@ -61,7 +73,10 @@ class _HomePageState extends State<HomePage> {
         builder: (context) {
           return DialogBox(
             rodzaj: createMode,
-            controller: _controller,
+            titleController: _titleController,
+            emailController: _emailController,
+            descriptionController: _descriptionController,
+            dateController: _dateController,
             onSave: saveNewTask,
             onCancel: () => Navigator.of(context).pop(),
           );
@@ -100,7 +115,7 @@ class _HomePageState extends State<HomePage> {
           itemBuilder: (context, index) {
             return ToDoTile(
                 taskName: toDoList[index][0],
-                taskCompleted: toDoList[index][1],
+                taskCompleted: toDoList[index][4],
                 onChanged: (value) => checkBoxChanged(value, index),
                 onPressed: () => deleteTask(index),
             );

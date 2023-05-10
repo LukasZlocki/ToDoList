@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/util/my_button.dart';
 
 class DialogBox extends StatelessWidget {
-  final controller;
+  final titleController;
+  final emailController;
+  final descriptionController;
+  final dateController;
+
   final String rodzaj;
   VoidCallback onSave;
   VoidCallback onCancel;
 
   DialogBox({
     super.key,
-    required this.controller,
+    required this.titleController,
+    required this.emailController,
+    required this.descriptionController,
+    required this.dateController,
     required this.onSave,
     required this.onCancel,
     required this.rodzaj,
@@ -30,7 +37,7 @@ class DialogBox extends StatelessWidget {
             ),
           // get user input
           TextField(
-            controller: controller,
+            controller: titleController,
             decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Add a new task here"
@@ -42,7 +49,7 @@ class DialogBox extends StatelessWidget {
                 '' + rodzaj
             ),
             TextField(
-              controller: controller,
+              controller: emailController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Add " + rodzaj + " here"
@@ -54,7 +61,7 @@ class DialogBox extends StatelessWidget {
                 'Description'
             ),
             TextField(
-              controller: controller,
+              controller: descriptionController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Add description here"
@@ -66,7 +73,7 @@ class DialogBox extends StatelessWidget {
                 'Date'
             ),
             TextField(
-              controller: controller,
+              controller: dateController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Add date here"
