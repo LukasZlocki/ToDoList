@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/util/dialog_box.dart';
 import 'package:to_do_app/util/todo_tile.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,8 +20,8 @@ class _HomePageState extends State<HomePage> {
 
   // list of todos tasks
   List toDoList = [
-    ["Make tutorial","aaa1","bbb1","cc1", false],
-    ["Do excercise","aaa2","bbb2","cc2", false]
+    ["Title1", "metadata1", "deadline1", "description1", false],
+    ["Title2", "metadata2", "deadline2", "description2", false]
   ];
 
   // delete task with secific index
@@ -84,6 +86,50 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  List<dynamic> taskList = [];
+  List<dynamic> MainTaskList = [];
+
+// load data from REST API
+  void LoadData() async {
+    // clearing the list
+    taskList.clear();
+    // clear todo list
+    toDoList.clear();
+    String _url = "http://127.0.0.1:8000/api/task";
+    final uri = Uri.parse(_url);
+    final response = await http.get(uri);
+    final body = response.body;
+    final json = jsonDecode(body);
+    setState(() {
+      taskList = json;
+    });
+    print('fetching completed');
+    extract(taskList);
+  }
+
+ // converting json to proper data and add to list
+  void extract(List<dynamic> taskList) {
+    for (var i = 0; i < taskList.length; i++) {
+      final data = taskList[i];
+      //final int _id = data['id'];
+      final _title = data['title'];
+      final _metadata = data['metadata'];
+      final _deadline = data['deadline'];
+      final _description = data['description'];
+      final _isfinished = data['isfinished'];
+      List<dynamic> _temp = [
+        //_id,
+        _title,
+        _metadata,
+        _deadline,
+        _description,
+        _isfinished,
+      ];
+      toDoList.add(_temp);
+    }
+    print('rewriting list to new list with string url, completed.');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,6 +152,12 @@ class _HomePageState extends State<HomePage> {
             FloatingActionButton(
               onPressed: createNewTaskMessage,
               child: Icon(Icons.message),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                LoadData(); // loading data from rest endpoint
+              },
+              child: Icon(Icons.add),
             ),
           ],
             ),
